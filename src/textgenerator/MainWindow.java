@@ -25,12 +25,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.JSplitPane;
 import javax.swing.JButton;
 
+import textgenerator.CommonConfiguration;
+
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 
+	private CommonConfiguration myCConfig;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -96,6 +100,13 @@ public class MainWindow extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
+				myCConfig.setNumOfSlaves(Integer.valueOf(textField_1.getText()).intValue());				
+			}
+		});
+		
 		btnUpdate.setBounds(252, 88, 108, 26);
 		contentPane.add(btnUpdate);
 		
