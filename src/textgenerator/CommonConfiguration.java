@@ -3,6 +3,11 @@ package textgenerator;
 public class CommonConfiguration {
 	private int numOfMasters;
 	private int numOfSlaves;
+	
+	CommonConfiguration(){
+		numOfMasters = 0;
+		numOfSlaves  = 0;		
+	}
 	/**
 	 * @return numOfSlaves
 	 */

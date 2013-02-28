@@ -26,6 +26,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JButton;
 
 import textgenerator.CommonConfiguration;
+import textgenerator.DrawPanel;
 
 public class MainWindow extends JFrame {
 
@@ -100,18 +101,23 @@ public class MainWindow extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnUpdate = new JButton("Update");
+		
+		DrawPanel panel = new DrawPanel(myCConfig);
+		panel.setBounds(12, 126, 658, 393);
+		contentPane.add(panel);
+		
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
-				myCConfig.setNumOfSlaves(Integer.valueOf(textField_1.getText()).intValue());				
+				//myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
+				//myCConfig.setNumOfSlaves(Integer.valueOf(textField_1.getText()).intValue());
+				System.out.println(Integer.valueOf(textField.getText()));
+				repaint(12, 126, 658, 393);
 			}
 		});
 		
 		btnUpdate.setBounds(252, 88, 108, 26);
 		contentPane.add(btnUpdate);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(12, 126, 658, 393);
-		contentPane.add(panel);
+
 	}
 }
