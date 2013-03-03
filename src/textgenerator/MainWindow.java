@@ -27,6 +27,8 @@ import javax.swing.JButton;
 
 import textgenerator.CommonConfiguration;
 import textgenerator.DrawPanel;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 public class MainWindow extends JFrame {
 
@@ -36,6 +38,7 @@ public class MainWindow extends JFrame {
 
 	private CommonConfiguration myCConfig;
 	
+
 	/**
 	 * Launch the application.
 	 */
@@ -56,6 +59,9 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
+		
+		myCConfig = new CommonConfiguration();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 684, 579);
 		
@@ -103,14 +109,18 @@ public class MainWindow extends JFrame {
 		JButton btnUpdate = new JButton("Update");
 		
 		DrawPanel panel = new DrawPanel(myCConfig);
+		panel.addMouseWheelListener(new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent arg0) {
+			}
+		});
 		panel.setBounds(12, 126, 658, 393);
 		contentPane.add(panel);
 		
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
-				//myCConfig.setNumOfSlaves(Integer.valueOf(textField_1.getText()).intValue());
-				System.out.println(Integer.valueOf(textField.getText()));
+				myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
+				myCConfig.setNumOfSlaves(Integer.valueOf(textField_1.getText()).intValue());
+				//System.out.println(Integer.valueOf(textField.getText()));
 				repaint(12, 126, 658, 393);
 			}
 		});
