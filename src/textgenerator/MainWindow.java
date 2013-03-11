@@ -1,5 +1,6 @@
 package textgenerator;
-
+import java.awt.*;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -29,6 +30,8 @@ import textgenerator.CommonConfiguration;
 import textgenerator.DrawPanel;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class MainWindow extends JFrame {
 
@@ -108,14 +111,6 @@ public class MainWindow extends JFrame {
 		
 		JButton btnUpdate = new JButton("Update");
 		
-		DrawPanel panel = new DrawPanel(myCConfig);
-		panel.addMouseWheelListener(new MouseWheelListener() {
-			public void mouseWheelMoved(MouseWheelEvent arg0) {
-			}
-		});
-		panel.setBounds(12, 126, 658, 393);
-		contentPane.add(panel);
-		
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
@@ -127,6 +122,15 @@ public class MainWindow extends JFrame {
 		
 		btnUpdate.setBounds(252, 88, 108, 26);
 		contentPane.add(btnUpdate);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(11, 126, 659, 393);
+		contentPane.add(scrollPane_1);
+		
+		DrawPanel panel = new DrawPanel(myCConfig);
+		panel.setPreferredSize(new Dimension(659,393));
+		
+		scrollPane_1.setViewportView(panel);
 		
 
 	}
