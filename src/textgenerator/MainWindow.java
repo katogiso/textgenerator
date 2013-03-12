@@ -35,11 +35,8 @@ import javax.swing.JScrollPane;
 
 public class MainWindow extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
 	private CommonConfiguration myCConfig;
+	private JTextField textField;
 	
 
 	/**
@@ -80,58 +77,30 @@ public class MainWindow extends JFrame {
 				System.exit(0);
 			}
 		});
+		
 		mnFile.add(mntmClose);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("NULL");
-		chckbxNewCheckBox.setBounds(11, 0, 93, 33);
-		contentPane.add(chckbxNewCheckBox);
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
-		JLabel lblOfMaster = new JLabel("# of Masters");
-		lblOfMaster.setBounds(11, 50, 93, 26);
-		lblOfMaster.setHorizontalAlignment(SwingConstants.LEFT);
-		contentPane.add(lblOfMaster);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(Short.MAX_VALUE,Short.MAX_VALUE));		
+		panel.add(scrollPane);
+		
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
+		
+		JPanel panel_1 = new JPanel();
+		//panel_1.setPreferredSize(new Dimension(Short.MAX_VALUE,Short.MAX_VALUE));
+		panel.add(panel_1);
+		
+		JLabel lblHoge = new JLabel("HOGE");
+		panel_1.add(lblHoge);
 		
 		textField = new JTextField();
-		textField.setBounds(104, 51, 104, 26);
-		contentPane.add(textField);
+		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblOfSlaves = new JLabel("# of Slaves");
-		lblOfSlaves.setBounds(11, 88, 93, 26);
-		contentPane.add(lblOfSlaves);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(104, 88, 104, 26);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnUpdate = new JButton("Update");
-		
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				myCConfig.setNumOfMasters(Integer.valueOf(textField.getText()).intValue());
-				myCConfig.setNumOfSlaves(Integer.valueOf(textField_1.getText()).intValue());
-				//System.out.println(Integer.valueOf(textField.getText()));
-				repaint(12, 126, 658, 393);
-			}
-		});
-		
-		btnUpdate.setBounds(252, 88, 108, 26);
-		contentPane.add(btnUpdate);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(11, 126, 659, 393);
-		contentPane.add(scrollPane_1);
-		
-		DrawPanel panel = new DrawPanel(myCConfig);
-		panel.setPreferredSize(new Dimension(659,393));
-		
-		scrollPane_1.setViewportView(panel);
-		
-
 	}
 }
